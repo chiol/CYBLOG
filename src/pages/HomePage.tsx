@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
 import bannerImg from '../assets/banner_img.png'
 import bannerBack from '../assets/bannerBack.png'
 import aboutCenterImg from '../assets/aboutCenterImg.png'
 import aboutLeftImg from '../assets/aboutLeftImg.png'
-import { Typography, Input, Button, Form } from 'antd'
+import { Typography, Input, Button, Modal } from 'antd'
 import HomeContainer from '../components/HomeContainer'
 import { Link } from 'react-router-dom'
 
 function HomePage() {
     const { Title, Paragraph } = Typography;
+    const [modalVisibility, setModalVisibility] = useState<boolean>(false);
+    const onClickSend = () => {
+        setModalVisibility(true);
+    }
+    const onClickModalClose = () => {
+        setModalVisibility(false)
+    }
     return (
         <>
             <HeaderContainer>
@@ -18,7 +25,8 @@ function HomePage() {
                     <Logo src={logo} />
                     <Menu>
                         <MenuList><MenuListHyper href="https://github.com/chiol"> git</MenuListHyper></MenuList>
-                        <MenuList> <MenuListLink to="/blog">blog</MenuListLink></MenuList>
+                        <MenuList><MenuListLink to="/CYBLOG/blog">blog</MenuListLink></MenuList>
+                        <MenuList><MenuListLink to="/CYBLOG/blog">blog</MenuListLink></MenuList>
                     </Menu>
                 </Header>
             </HeaderContainer>
@@ -97,20 +105,20 @@ function HomePage() {
                                 <ContectInput placeholder="name" />
                                 <ContectInput placeholder="subject" />
                                 <ContectTextArea rows={10} placeholder="contents" />
-                                <ContectSendButton type="primary" htmlType="submit" >Send</ContectSendButton>
+                                <ContectSendButton type="primary" onClick={onClickSend} >Send</ContectSendButton>
                             </ContectLeftBox>
                             <ContectRightBox>
                                 <ContectInfoBox>
-                                    name <br /><br /> 정치영
+                                    name <br /> 정치영
                                 </ContectInfoBox>
                                 <ContectInfoBox>
-                                    mobile<br /><br />010-6850-6952
+                                    mobile<br />010-6850-6952
                                 </ContectInfoBox>
                                 <ContectInfoBox>
-                                    email <br /><br />jcy6677@gmail.com
+                                    email <br />jcy6677@gmail.com
                                 </ContectInfoBox>
                                 <ContectInfoBox>
-                                    sns <br /><br />@instagram - chi___0
+                                    sns <br />@instagram - chi___0
                                 </ContectInfoBox>
                             </ContectRightBox>
                         </ContectBox>
@@ -120,6 +128,17 @@ function HomePage() {
                 </Footer>
                 </Body>
             </BodyContainer>
+            <Modal
+                title="준비중"
+                visible={modalVisibility}
+                footer={[
+                    <Button key="back" onClick={onClickModalClose}>
+                      Return
+                    </Button>,
+                  ]}
+                >
+                <p>준비중...</p>
+                </Modal>
         </>
 
     )
@@ -239,7 +258,6 @@ const SkillBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    line-height:1.4;
 `
 const SkillBoxLeft = styled(SkillBox)`
     width: 33.3%;
@@ -280,7 +298,6 @@ const ContectSendButton = styled(Button)`
     height: 30px;
 `
 const ContectLeftBox = styled(ContectTempBox)`
-    padding-top: 50px;    
 `
 const ContectRightBox = styled(ContectTempBox)`
     justify-content: center;
