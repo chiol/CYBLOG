@@ -26,7 +26,6 @@ function HomePage() {
                     <Menu>
                         <MenuList><MenuListHyper href="https://github.com/chiol"> git</MenuListHyper></MenuList>
                         <MenuList><MenuListLink to="/CYBLOG/blog">blog</MenuListLink></MenuList>
-                        <MenuList><MenuListLink to="/CYBLOG/blog">blog</MenuListLink></MenuList>
                     </Menu>
                 </Header>
             </HeaderContainer>
